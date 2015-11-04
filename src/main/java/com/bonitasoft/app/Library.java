@@ -71,4 +71,28 @@ public class Library {
 
         return receive;
     }
+
+    private static String readFile(String file) {
+        try {
+            BufferedReader reader = null;
+            reader = new BufferedReader(new FileReader(file));
+
+            String line = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            String ls = System.getProperty("line.separator");
+
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+
+            return stringBuilder.toString();
+        } catch (FileNotFoundException e) {
+            message("Error : "+e.getMessage(), false, true);
+            return null;
+        } catch (IOException e) {
+            message("Error : "+e.getMessage(), false, true);
+            return null;
+        }
+    }
 }
