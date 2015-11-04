@@ -1,6 +1,7 @@
 package com.bonitasoft.app;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.*;
 
@@ -47,7 +48,13 @@ public class Library {
             }
 
             try {
-                Handler fh = new FileHandler("logs/trace.%g.log", 9000000, 4, true);
+                Calendar calendar = Calendar.getInstance();
+                java.util.Date currentDate = calendar.getTime();
+                java.sql.Date dateReturn = new java.sql.Date(currentDate.getTime());
+                SimpleDateFormat formater = new SimpleDateFormat("yyyyMMdd");
+                String now = formater.format(dateReturn);
+
+                Handler fh = new FileHandler("logs/trace."+now+".%g.log", 9000000, 4, true);
                 fh.setFormatter(new SimpleFormatter());
                 logger.addHandler(fh);
             } catch (IOException e) {
