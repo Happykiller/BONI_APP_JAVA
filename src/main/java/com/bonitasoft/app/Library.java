@@ -86,7 +86,7 @@ public class Library {
         }
     }
 
-    private static String readFile(String file) {
+    public static String readFile(String file) {
         try {
             BufferedReader reader = null;
             reader = new BufferedReader(new FileReader(file));
