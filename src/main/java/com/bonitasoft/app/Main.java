@@ -33,7 +33,7 @@ public class Main {
             // load properties
             prop = Library.load("BONI_APP_JAVA.properties");
             if(prop == null){
-                throw new IllegalArgumentException("No properties found.");
+                throw new Exception("No properties found.");
             }
 
             // start message
@@ -42,7 +42,7 @@ public class Main {
             // loading args
             arguments = Library.getArgs(args);
             if(arguments == null){
-                throw new IllegalArgumentException("No arguments detected, "+prop.getProperty("app.name")+" stop.");
+                throw new Exception("No arguments detected, "+prop.getProperty("app.name")+" stop.");
             }
 
             // swich mopde
