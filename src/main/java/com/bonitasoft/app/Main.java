@@ -66,7 +66,7 @@ public class Main {
     public static void testConnection(){
         try{
             // start message
-            Library.message("+testConnection:start", false, true);
+            Library.message("+ testConnection : start", false, true);
 
             // Setup access type (HTTP on local host)
             Map<String, String> parameters = new HashMap<String, String>();
@@ -86,7 +86,7 @@ public class Main {
             loginAPI.logout(session);
 
             // end message
-            Library.message("+testConnection:end", false, true);
+            Library.message("+ testConnection : end", false, true);
         }catch (Exception e){
             Library.traceExeption(e);
         }
