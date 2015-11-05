@@ -67,4 +67,14 @@ public class LibraryTest {
 
         Assert.assertEquals(waiting, receive);
     }
+
+    /**
+     * Methode : readFile(String file)
+     */
+    @Test
+    public void testReadFile() throws Exception {
+        String receive = Library.readFile("BONI_APP_JAVA.properties");
+
+        Assert.assertTrue(receive.length()>0);
+    }
 }
