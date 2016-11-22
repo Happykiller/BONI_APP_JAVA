@@ -6,26 +6,26 @@
 
     <groupId>Bonitasoft</groupId>
     <artifactId>BONI_APP_JAVA</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <dependencies>
 
         <dependency>
             <groupId>org.bonitasoft.engine</groupId>
             <artifactId>bonita-server</artifactId>
-            <version>7.1.0</version>
+            <version>7.3.3</version>
         </dependency>
 
         <dependency>
             <groupId>org.bonitasoft.engine</groupId>
             <artifactId>bonita-client</artifactId>
-            <version>7.1.0</version>
+            <version>7.3.3</version>
         </dependency>
 
         <dependency>
             <groupId>org.bonitasoft.engine</groupId>
             <artifactId>bonita-common</artifactId>
-            <version>7.1.0</version>
+            <version>7.3.3</version>
         </dependency>
 
         <dependency>
