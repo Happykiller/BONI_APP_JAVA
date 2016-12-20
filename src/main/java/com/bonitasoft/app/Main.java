@@ -1,8 +1,13 @@
 package com.bonitasoft.app;
 
+import com.happykiller.model.Personne;
+import com.happykiller.model.PersonneDAO;
+import org.bonitasoft.engine.api.APIClient;
 import org.bonitasoft.engine.api.ApiAccessType;
 import org.bonitasoft.engine.api.LoginAPI;
 import org.bonitasoft.engine.api.TenantAPIAccessor;
+import org.bonitasoft.engine.bdm.BusinessObjectDAOFactory;
+import org.bonitasoft.engine.bdm.dao.BusinessObjectDAO;
 import org.bonitasoft.engine.exception.BonitaHomeNotSetException;
 import org.bonitasoft.engine.exception.ServerAPIException;
 import org.bonitasoft.engine.exception.UnknownAPITypeException;
@@ -47,8 +52,10 @@ public class Main {
 
             // swich mopde
             String s = Library.getArgumentValue(arguments, "mode");
-            if (s.equals("full")) {
+            if (s.equals("test")) {
                 testConnection();
+            } if (s.equals("bdm")) {
+                testBdm();
             } else {
                 throw new IllegalArgumentException("Invalid argument of mode");
             }
@@ -89,6 +96,43 @@ public class Main {
             Library.message("+ testConnection : end", false, true);
         }catch (Exception e){
             Library.traceExeption(e);
+        }
+    }
+
+    /**
+     *
+     */
+    public static void testBdm(){
+        APIClient apiClient = new APIClient();
+        try{
+            // start message
+            Library.message("+ testBdm : start", false, true);
+
+            // Setup access type (HTTP on local host)
+            Map<String, String> parameters = new HashMap<String, String>();
+            parameters.put("server.url", prop.getProperty("bonitaBPM.serverUrl"));
+            parameters.put("application.name", prop.getProperty("bonitaBPM.applicationName"));
+            APITypeManager.setAPITypeAndParams(ApiAccessType.HTTP, parameters);
+
+            // Authenticate and obtain API session
+            apiClient.login(prop.getProperty("bonitaBPM.techUserLog"), prop.getProperty("bonitaBPM.techUserPass"));
+
+            // Operation
+            PersonneDAO personneDAO = apiClient.getDAO(PersonneDAO.class);
+            List<Personne> personnes = personneDAO.find(0,100);
+            Library.message("1rst personne :" + personnes.get(0).getNom() + " " + personnes.get(0).getPrenom(), false, true);
+
+            // end message
+            Library.message("+ testBdm : end", false, true);
+        }catch (Exception e){
+            Library.traceExeption(e);
+        }finally {
+            //logout
+            try {
+                apiClient.logout();
+            } catch (LogoutException e) {
+                Library.traceExeption(e);
+            }
         }
     }
 }

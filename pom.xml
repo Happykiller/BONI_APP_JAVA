@@ -11,6 +11,18 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.happykiller.model</groupId>
+            <artifactId>bdm-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.happykiller.model</groupId>
+            <artifactId>bdm-dao</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.bonitasoft.engine</groupId>
             <artifactId>bonita-server</artifactId>
             <version>7.3.3</version>
@@ -32,6 +44,13 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
